@@ -1,0 +1,200 @@
+html, body
+{
+         background: #000000;
+         color: #FF7200;
+         font-family: Calibri, Tahoma, Verdana, Arial, sans-serif;
+         background-image: url('https://bunbunmaru.ca/suwawa.png');
+         background-repeat: no-repeat;
+         background-position: right bottom;
+         background-attachment: fixed;
+}
+a
+{
+        color: #FF953F;
+}
+a:hover
+{
+        color: #FFFFFF;
+}
+.adminbar
+{
+        text-align: right;
+        clear: both;
+        float: right;
+}
+.logo
+{
+        clear: both;
+        text-align: center;
+        font-size: 28pt;
+        color: #FF7200;
+        width: 100%;
+        font-family: Cambria, Georgia, Times New Roman, serif;
+        font-weight: bold;
+        text-shadow: #9F2900 1px 1px 0;
+}
+.logo img
+{
+	line-height: 150px;
+	text-align: middle;
+}
+hr
+{
+	height: 1px;
+	background-color: #FF7200;
+	border: none;
+}
+textarea, input[type="text"], input[type="password"], input[type="file"]
+{
+	padding: 2px;
+	background-color: #9F2900;
+	background-image: -moz-linear-gradient(-45deg, #9F2900, #FF7200);
+	background-image: -webkit-gradient(linear, left top, right bottom, from(#9F2900), to(#FF7200));
+	font-family: Calibri, Tahoma, Verdana, Arial, sans-serif;
+	color: #FFFFFF;
+	border: 1px solid #FF4200;
+}
+input[type="submit"], button
+{
+	padding: 2px;
+	background-color: #9F2900;
+	background-image: -moz-linear-gradient(135deg, #9F2900, #FF7200);
+	background-image: -webkit-gradient(linear, right bottom, left top, from(#9F2900), to(#FF7200));;
+	font-family: Calibri, Tahoma, Verdana, Arial, sans-serif;
+	color: #FFFFFF;
+	border: 1px solid #FF4200;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.theader
+{
+        text-align: center;
+        padding: 2px;
+        color: #FFFFFF;
+        width: 100%;
+        color: #FF7200;
+        font-weight: bold;
+        text-shadow: #9F2900 1px 1px 0;
+        font-family: Cambria, Georgia, Times New Roman, serif;
+}
+.postarea
+{
+}
+.rules
+{
+        font-size: 8pt;
+}
+.postblock
+{
+        font-weight: bold;
+        color: #FF7200;
+        font-family: Cambria, Georgia, Times New Roman, serif;
+        padding-right: 2.00em;
+        vertical-align: top;
+        text-shadow: #9F2900 1px 1px 0;
+}
+.footer
+{
+        text-align: center;
+        font-size: 10pt;
+        font-family: Cambria, Georgia, Times New Roman, serif;
+}
+.filesize
+{
+	text-decoration: none;
+}
+.filetitle
+{
+	font-size: 14pt;
+        font-weight: bold;
+        color: #FF7200;
+        font-family: Cambria, Georgia, Times New Roman, serif;
+        text-shadow: #9F2900 1px 1px 0;
+}
+.postername
+{
+	color: #FF953F;
+	font-family: Consolas, Lucida Console, Courier New, Courier;
+}
+.postertrip
+{
+	color: #228854;
+}
+.oldpost
+{
+        color: #CC1105;
+        bold;
+}
+.omittedposts
+{
+        color: #707070;
+}
+.reply
+{
+	background-color: #9F2900;
+	background-image: -moz-linear-gradient(-135deg, #9F2900, #FF7200);
+	background-image: -webkit-gradient(linear, right top, left bottom, from(#9F2900), to(#FF7200));
+	font-family: Calibri, Tahoma, Verdana, Arial, sans-serif;
+	color: #FFFFFF;
+	box-shadow: 1px 1px 4px #9F2900;
+	-moz-box-shadow: 1px 1px 4px #9F2900;
+	-webkit-box-shadow: 2px 2px 0px #9F2900;
+    word-wrap: break-word;
+    max-width: 90vw;
+}
+.reply blockquote
+{
+	color: #000000;
+	padding-bottom: 1.0em;
+}
+.doubledash
+{
+ 	vertical-align: top;
+	clear: both;
+	float: left;
+}
+.reflink
+{
+	font-family: Consolas, Lucida Console, Courier New, Courier;
+}
+.replytitle
+{
+	font-size: 14pt;
+        font-weight: bold;
+        color: #000000;
+        font-family: Cambria, Georgia, Times New Roman, serif;
+        text-shadow: #9F2900 1px 1px 0;
+}
+.commentpostername
+{
+        color: #000000;
+	font-family: Consolas, Lucida Console, Courier New, Courier;
+}
+.thumbnailmsg
+{
+	font-size: 8pt;
+	color: #707070;
+}
+.reply .thumbnailmsg
+{
+	color: #000000;
+}
+.highlight
+{
+	background: #F0E0D6;
+	color: #800000;
+	border: 2px dashed #EEAA88;
+}
+
+.spoiler { color: black; background: black; }
+.spoiler:hover { color: white !important; }
+img { border: 0; }
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}

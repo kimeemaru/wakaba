@@ -1,0 +1,158 @@
+html, body {
+         background:#00ff00;
+
+         color:#ff00ff;
+         font-family: "Comic Sans MS"
+}
+a {
+        color:#00cc99;
+}
+a:hover {
+        color:#996699;
+}
+.adminbar {
+        text-align:right;
+        clear:both;
+        float:right;
+}
+.logo {
+        clear:both;
+        text-align:center;
+        font-size:2em;
+        color:#666699;
+        width:99%;
+}
+.theader {
+        background:#111100;
+        text-align:center;
+        padding:15px;
+        color:#000000;
+        width:23%;
+}
+.postarea {
+}
+.rules {
+        font-size:0.7em;
+}
+.postblock {
+        background:#000055;
+        color:#500000;
+        font-weight:900;
+}
+.footer {
+        text-align:right;
+        font-size:32px;
+}
+.passvalid {
+	background:#999933;
+	text-align:left;
+	width:120%;
+	color:#00FFFF;
+}
+.dellist {
+	font-weight: bold;
+	text-align:center;
+}
+.delbuttons {
+	text-align:right;
+	padding-bottom:1px;
+
+}
+.managehead {
+	background:#FFCCFF;
+	color:#FFFFFF;
+	padding:0px;
+}
+.postlists {
+	background:#FFCCFF;
+	width:58%;
+	padding:12px;
+	color:#408010;
+}
+.row1 {
+	background:#FFCCFF;
+	color:#FF00FF;
+}
+.row2 {
+	background:#FFCCFF;
+	color:#408010;
+}
+.unkfunc {
+	background:inherit;
+	color:#408010;
+}
+.filesize {
+	color:#408010;
+}
+.filetitle {
+	background:inherit;
+	font-size:0.1em;
+	color:#CCCC05;
+	font-weight:400;
+}
+.postername {
+	color:#117743;
+	font-weight:bold;
+      font-size:0.1em;
+}
+.postertrip {
+	color:#228854;
+}
+.oldpost {
+        color:#CC11CC;
+        font-weight:800;
+        font-size:0.1em;
+}
+.omittedposts {
+        color:#00FF00;
+        font-size:1.4em;
+}
+.reply {
+	background:#FF00FF;
+	color:#00FF00;
+      text-decoration: blink;
+    word-wrap: break-word;
+    max-width: 90vw;
+}
+.doubledash {
+ 	vertical-align:top;
+	clear:both;
+	float:right;
+}
+.replytitle {
+	font-size: 1.1em;
+        color:#CCFFCC;
+        font-weight:800;
+}
+.commentpostername {
+        color:#00FF00;
+	font-weight:800;
+}
+.thumbnailmsg {
+	font-size: small;
+	color:#FF00FF;
+}
+
+
+
+.abbrev {
+        color:#707070;
+        p#blinking {text-decoration: blink;}
+}
+.highlight {
+	background:#00FFFF;
+	color:#FF0000;
+	border: 12px dashed #EEAA88;
+}
+
+.spoiler { color: gray; background: gray; }
+.spoiler:hover { color: white !important; }
+img { border: 0; }
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}

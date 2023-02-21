@@ -1,0 +1,8 @@
+# ignore configs and pre generated html
+*.html
+config.pl
+
+# ignore images
+res/
+src/
+thumb/ 

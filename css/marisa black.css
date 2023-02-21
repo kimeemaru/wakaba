@@ -1,0 +1,139 @@
+html, body {
+  font-size:10pt;
+  background:#222022;
+  color:#FFFFFF;
+}
+* {
+  font-family: "Trebuchet MS", Tahoma, Verdana, Arial, sans-serif;
+  font-size: 10pt;
+}
+input, textarea {
+  background-color: #330033;
+  border: 1px solid #552255;
+}
+a {
+  background:inherit;
+  color:#AABB11;
+}
+a:visited {
+  background:inherit;
+  color:#BBBB11;
+}
+a:hover {
+  color:#DDDD44;
+  background:inherit;
+}
+a.quotelink {
+  background:inherit;
+  color:#DDDD44;
+}
+.logo {
+  clear:both;
+  text-align:center;
+  background:inherit;
+  font-size:26pt;
+  color:#CCCC33;
+  width:100%;
+}
+.postarea {
+  background:inherit;
+}
+.postblock {
+  background: #330033;
+  border: 1px solid #552255;
+  color: #CCCCCC;
+  font-weight: bold;
+  padding: 2px 5px 2px 5px;
+}
+.footer {
+  text-align:center;
+  font-size:12px;
+}
+.unkfunc {
+	background:inherit;
+	color:#789922;
+}
+.filesize {
+	text-decoration:none;
+}
+.filetitle {
+	background:inherit;
+	color:#CCCC33;
+	font-weight:800;
+}
+.postername {
+  background:inherit;
+  font-size:11pt;
+  color:#BBBB33;
+  font-weight: bold;
+}
+.postertrip {
+	background:inherit;
+	color:#228854;
+}
+.oldpost {
+  background:inherit;
+  color:#0F0C5D;
+  font-weight:800;
+}
+.omittedposts {
+  background:inherit;
+  color:#AAAAAA;
+}
+.reply {
+	background:#330033;
+	color:#FFFFFF;
+	border:3px solid #552255;
+    word-wrap: break-word;
+    max-width: 90vw;
+}
+.replyhl {
+	background:#D6BAD0;
+	color:#FFFFFF;
+}
+.doubledash {
+ 	vertical-align:top;
+	clear:both;
+	float:left;
+}
+.replytitle {
+	background:inherit;
+	font-size:18px;
+  color:#CCCC33;
+  font-weight:800;
+}
+.commentpostername {
+  background:inherit;
+  font-size:11pt;
+  color:#BBBB33;
+  font-weight: bold;
+}
+a.quotejs {
+  color:#FFFFFF;
+	text-decoration: none;
+}
+a.quotejs:hover {
+  font-weight:bold;
+}
+
+.adminbar {
+  text-align: center;
+}
+
+.spoiler { color: black; background: black; }
+.spoiler:hover { color: white !important; }
+
+input[type="submit"] { color: #CCCCCC; }
+input[type="text"] { color: white; }
+textarea { color: white; }
+input[type="password"] { color: white; }
+input[type="file"] { color: #CCCCCC; }
+img { border: 0; }
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
