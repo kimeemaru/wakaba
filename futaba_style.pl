@@ -53,6 +53,8 @@ form .trap { display:none }
 </loop>
 -
 [<a href="<var expand_filename(HOME)>" target="_top"><const S_HOME></a>]
+[<a href=\faq.html <button>FAQ</button></a>]
+[<a href=\wakaba\threadlist.php <button>Thread List</button></a>]
 [<a href="<var get_secure_script_name()>?task=admin"><const S_ADMIN></a>]
 </div>
 
