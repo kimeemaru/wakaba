@@ -62,33 +62,34 @@
         <!-- List all threads from /res/ folder in descending last modified order so the most recently posted in thread appears at the top. -->
         <?php
         $dir = "res/";
+        $thumb_dir = "thumb/";
         $files = scandir($dir);
         usort($files, function($a, $b) use ($dir) {
-        return filemtime($dir . $b) - filemtime($dir . $a);
+            return filemtime($dir . $b) - filemtime($dir . $a);
         });
         
         $page = isset($_GET['page']) ? max(intval($_GET['page']), 1) : 1;
-        $items_per_page = 50;
+        $items_per_page = 10;
         $offset = ($page - 1) * $items_per_page;
         $total_items = count($files) - 2;
         $total_pages = ceil($total_items / $items_per_page);
         
         if ($total_pages > 1) {
-        echo "<div style=\"text-align: center;\">";
-        if ($page > 1) {
-            echo "<a href=\"?page=" . ($page - 1) . "\">Previous</a> ";
-        }
-        for ($i = 1; $i <= $total_pages; $i++) {
-            if ($i == $page) {
-            echo "$i ";
-            } else {
-            echo "<a href=\"?page=$i\">$i</a> ";
+            echo "<div style=\"text-align: center;\">";
+            if ($page > 1) {
+                echo "<a href=\"?page=" . ($page - 1) . "\">Previous</a> ";
             }
-        }
-        if ($page < $total_pages) {
-            echo "<a href=\"?page=" . ($page + 1) . "\">Next</a>";
-        }
-        echo "</div>";
+            for ($i = 1; $i <= $total_pages; $i++) {
+                if ($i == $page) {
+                    echo "$i ";
+                } else {
+                    echo "<a href=\"?page=$i\">$i</a> ";
+                }
+            }
+            if ($page < $total_pages) {
+                echo "<a href=\"?page=" . ($page + 1) . "\">Next</a>";
+            }
+            echo "</div>";
         }
         
         echo "<table>";
@@ -97,36 +98,46 @@
         echo "<th>Comment</th>";
         echo "</tr>";
         for ($i = $offset; $i < $offset + $items_per_page && $i < $total_items; $i++) {
-        $file = $files[$i + 2];
-        if (preg_match('/^(\d+)\.html$/', $file, $matches)) {
-            $thread_number = $matches[1];
-            $thread_title = "";
-            $content = file_get_contents($dir . $file);
-            if (preg_match('/<span class="filetitle">(.*?)(<a href="(.*?)">.*?<\/a>)?<\/span>/', $content, $matches)) {
-            if (isset($matches[1])) {
-                $thread_title = $matches[1];
+            $file = $files[$i + 2];
+            if (preg_match('/^(\d+)\.html$/', $file, $matches)) {
+                $thread_number = $matches[1];
+                $thread_title = "";
+                $comment = "No comment.";
+                $content = file_get_contents($dir . $file);
+                if (preg_match('/<span class="filetitle">(.*?)(<a href="(.*?)">.*?<\/a>)?<\/span>/', $content, $matches)) {
+                    if (isset($matches[1])) {
+                        $thread_title = $matches[1];
+                    }
+                    if (isset($matches[2])) {
+                        $thread_link = $matches[2];
+                    } else {
+                        $thread_link = $dir . $file;
+                    }
+                    preg_match('/<img src="(.*?)" class="thumb"/', $content, $matches);
+                    $thumb_path = $thumb_dir . basename($matches[1]);
+                } else {
+                    $thread_link = $dir . $file;
+                    $thumb_path = "";
+                }
+                preg_match('/<p>(.*?)<\/p>/', $content, $matches);
+                if (isset($matches[1])) {
+                    $comment = $matches[1];
+                }
+                echo "<tr>";
+                echo "<td class=\"thread-number\">";
+                if (!empty($thumb_path)) {
+                    echo "<img src=\"$thumb_path\" alt=\"\" style=\"vertical-align:middle; margin-right:5px;\">";
+                }
+                echo "<a href=\"$thread_link\">";
+                if (empty(trim($thread_title))) {
+                    echo ">>$thread_number";
+                } else {
+                    echo $thread_title;
+                }
+                echo "</a></td>";
+                echo "<td class=\"comment\">$comment</td>";
+                echo "</tr>";
             }
-            if (isset($matches[2])) {
-                $thread_link = $matches[2];
-            } else {
-                $thread_link = $dir . $file;
-            }
-            } else {
-            $thread_link = $dir . $file;
-            }
-            preg_match('/<p>(.*?)<\/p>/', $content, $matches);
-            $comment = $matches[1];
-            echo "<tr>";
-            echo "<td class=\"thread-number\"><a href=\"$thread_link\">";
-            if (empty(trim($thread_title))) {
-            echo "Unnamed Thread $thread_number";
-            } else {
-            echo $thread_title;
-            }
-            echo "</a></td>";
-            echo "<td class=\"comment\">$comment</td>";
-            echo "</tr>";
-        }
         }
         echo "</table>";
         ?>
