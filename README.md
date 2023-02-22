@@ -6,5 +6,7 @@ https://wakaba.c3.cx/docs/docs.html
 # New Features:
 1. noko in the email field returns you to the thread you were posting in
 2. spoiler text with ** spoiler **
-3. surprise boxes with ++surprise++
-4. thread list!
+3. surprise boxes with ++ surprise ++
+4. strikethrough with ~~ strikethrough ~~
+5. banner rotation (ayas.php)
+6. thread list! (threadlist.php)
