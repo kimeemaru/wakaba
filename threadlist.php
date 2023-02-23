@@ -94,8 +94,8 @@
         
         echo "<table>";
         echo "<tr>";
-        echo "<th>Title</th>";
-        echo "<th>Comment</th>";
+        echo "<th>Subject</th>";
+        echo "<th>First Comment</th>";
         echo "</tr>";
         for ($i = $offset; $i < $offset + $items_per_page && $i < $total_items; $i++) {
             $file = $files[$i + 2];
