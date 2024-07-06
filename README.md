@@ -10,3 +10,4 @@ https://wakaba.c3.cx/docs/docs.html
 4. banner rotation (ayas.php)
 5. noko in the email field returns you to the thread you were posting in
 6. partially broken thread list! (threadlist.php)
+7. spoiler thumbnails (credits: anonymous)
