@@ -100,6 +100,7 @@ use constant PAGE_TEMPLATE => compile_template(NORMAL_HEAD_INCLUDE.q{
 	<if $image_inp>
 		<tr><td class="postblock"><const S_UPLOADFILE></td><td><input type="file" name="file" size="35" />
 		<if $textonly_inp>[<label><input type="checkbox" name="nofile" value="on" /><const S_NOFILE> ]</label></if>
+        [<label><input type="checkbox" name="spoiler" value="on" /><const S_SPOILER> ]</label>
 		</td></tr>
 	</if>
 
@@ -617,6 +618,7 @@ use constant ADMIN_POST_TEMPLATE => compile_template(MANAGER_HEAD_INCLUDE.q{
 <tr><td class="postblock"><const S_COMMENT></td><td><textarea name="field4" cols="48" rows="4"></textarea></td></tr>
 <tr><td class="postblock"><const S_UPLOADFILE></td><td><input type="file" name="file" size="35" />
 [<label><input type="checkbox" name="nofile" value="on" /><const S_NOFILE> ]</label>
+[<label><input type="checkbox" name="spoiler" value="on" /><const S_SPOILER> ]</label>
 </td></tr>
 <tr><td class="postblock"><const S_PARENT></td><td><input type="text" name="parent" size="8" /></td></tr>
 <tr><td class="postblock"><const S_DELPASS></td><td><input type="password" name="password" size="8" /><const S_DELEXPL></td></tr>

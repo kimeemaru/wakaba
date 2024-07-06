@@ -10,7 +10,8 @@ use constant S_SUBMIT => 'Submit';									# Describes submit button
 use constant S_COMMENT => 'Comment';								# Describes comment field
 use constant S_UPLOADFILE => 'File';								# Describes file field
 use constant S_NOFILE => 'No File';									# Describes file/no file checkbox
-use constant S_CAPTCHA => 'Verification';							# Describes captcha field
+use constant S_SPOILER => 'Spoiler';
+use constant S_CAPTCHA => 'CAPTCHA';							# Describes captcha field
 use constant S_PARENT => 'Parent';									# Describes parent field on admin post page
 use constant S_DELPASS => 'Password';								# Describes password field
 use constant S_DELEXPL => '(for post and file deletion)';			# Prints explanation for password box (to the right)
@@ -39,7 +40,7 @@ use constant S_LASTPG => 'Next';									# Defines next button
 use constant S_WEEKDAYS => ('Sun','Mon','Tue','Wed','Thu','Fri','Sat');	# Defines abbreviated weekday names.
 
 use constant S_MANARET => 'Return';										# Returns to HTML file instead of PHP--thus no log/SQLDB update occurs
-use constant S_MANAMODE => 'Manager Mode';								# Prints heading on top of Manager page
+use constant S_MANAMODE => 'Janny Mode';								# Prints heading on top of Manager page
 
 use constant S_MANALOGIN => 'Manager Login';							# Defines Management Panel radio button--allows the user to view the management panel (overview of all posts)
 use constant S_ADMINPASS => 'Admin password:';							# Prints login prompt

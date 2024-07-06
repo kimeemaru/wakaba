@@ -1019,57 +1019,66 @@ sub process_file($$$)
 
 	# do thumbnail
 	my ($tn_width,$tn_height,$tn_ext);
-
-	if(!$width) # unsupported file
-	{
-		if($filetypes{$ext}) # externally defined filetype
-		{
-			open THUMBNAIL,$filetypes{$ext};
-			binmode THUMBNAIL;
-			($tn_ext,$tn_width,$tn_height)=analyze_image(\*THUMBNAIL,$filetypes{$ext});
-			close THUMBNAIL;
-
-			# was that icon file really there?
-			if(!$tn_width) { $thumbnail=undef }
-			else { $thumbnail=$filetypes{$ext} }
-		}
-		else
-		{
-			$thumbnail=undef;
-		}
-	}
-	elsif($width>MAX_W or $height>MAX_H or THUMBNAIL_SMALL)
-	{
-		if($width<=MAX_W and $height<=MAX_H)
-		{
-			$tn_width=$width;
-			$tn_height=$height;
-		}
-		else
-		{
-			$tn_width=MAX_W;
-			$tn_height=int(($height*(MAX_W))/$width);
-
-			if($tn_height>MAX_H)
-			{
-				$tn_width=int(($width*(MAX_H))/$height);
-				$tn_height=MAX_H;
-			}
-		}
-
-		if(STUPID_THUMBNAILING) { $thumbnail=$filename }
-		else
-		{
-			$thumbnail=undef unless(make_thumbnail($filename,$thumbnail,$tn_width,$tn_height,THUMBNAIL_QUALITY,CONVERT_COMMAND));
-		}
-	}
-	else
-	{
-		$tn_width=$width;
-		$tn_height=$height;
-		$thumbnail=$filename;
-	}
-
+    
+    my $spoiler=$query->param("spoiler");
+    if (!$spoiler)
+    {
+        if(!$width) # unsupported file
+        {
+            if($filetypes{$ext}) # externally defined filetype
+            {
+                open THUMBNAIL,$filetypes{$ext};
+                binmode THUMBNAIL;
+                ($tn_ext,$tn_width,$tn_height)=analyze_image(\*THUMBNAIL,$filetypes{$ext});
+                close THUMBNAIL;
+    
+                # was that icon file really there?
+                if(!$tn_width) { $thumbnail=undef }
+                else { $thumbnail=$filetypes{$ext} }
+            }
+            else
+            {
+                $thumbnail=undef;
+            }
+        }
+        elsif($width>MAX_W or $height>MAX_H or THUMBNAIL_SMALL)
+        {
+            if($width<=MAX_W and $height<=MAX_H)
+            {
+                $tn_width=$width;
+                $tn_height=$height;
+            }
+            else
+            {
+                $tn_width=MAX_W;
+                $tn_height=int(($height*(MAX_W))/$width);
+    
+                if($tn_height>MAX_H)
+                {
+                    $tn_width=int(($width*(MAX_H))/$height);
+                    $tn_height=MAX_H;
+                }
+            }
+    
+            if(STUPID_THUMBNAILING) { $thumbnail=$filename }
+            else
+            {
+                $thumbnail=undef unless(make_thumbnail($filename,$thumbnail,$tn_width,$tn_height,THUMBNAIL_QUALITY,CONVERT_COMMAND));
+            }
+        }
+        else
+        {
+            $tn_width=$width;
+            $tn_height=$height;
+            $thumbnail=$filename;
+        }
+    }
+    else
+    {
+        $tn_width=100;
+        $tn_height=100;
+        $thumbnail='spoiler/spoiler.jpg';
+    }
 	if($filetypes{$ext}) # externally defined filetype - restore the name
 	{
 		my $newfilename=$uploadname;
