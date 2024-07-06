@@ -69,7 +69,7 @@
         });
         
         $page = isset($_GET['page']) ? max(intval($_GET['page']), 1) : 1;
-        $items_per_page = 10;
+        $items_per_page = 20;
         $offset = ($page - 1) * $items_per_page;
         $total_items = count($files) - 2;
         $total_pages = ceil($total_items / $items_per_page);
