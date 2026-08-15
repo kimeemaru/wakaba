@@ -131,9 +131,11 @@ use constant PAGE_TEMPLATE => compile_template(NORMAL_HEAD_INCLUDE.q{
 
 <if $thumbnail>
 <if $image=~/\.(webm|mp4)$/i>
-<video class="thumb" controls preload="metadata" poster="<var expand_filename($thumbnail)>" width="<var $tn_width>" height="<var $tn_height>">
-<source src="<var expand_image_filename($image)>" />
-</video>
+<span class="thumbnailmsg">
+[<a href="javascript:expand_video('<var $num>','<var expand_image_filename($image)>',<var $width>,<var $height>,false)">Play once</a>]
+[<a href="javascript:expand_video('<var $num>','<var expand_image_filename($image)>',<var $width>,<var $height>,true)">Loop</a>]
+</span><br />
+<img id="thumb<var $num>" src="<var expand_filename($thumbnail)>" width="<var $tn_width>" height="<var $tn_height>" alt="<var $size>" class="thumb" style="cursor:pointer" onclick="expand_video('<var $num>','<var expand_image_filename($image)>',<var $width>,<var $height>,false)" />
 </if>
 <if $image!~/\.(webm|mp4)$/i>
 <a target="_blank" href="<var expand_image_filename($image)>">
@@ -198,9 +200,11 @@ use constant PAGE_TEMPLATE => compile_template(NORMAL_HEAD_INCLUDE.q{
 
 <if $thumbnail>
 <if $image=~/\.(webm|mp4)$/i>
-<video class="thumb" controls preload="metadata" poster="<var expand_filename($thumbnail)>" width="<var $tn_width>" height="<var $tn_height>">
-<source src="<var expand_image_filename($image)>" />
-</video>
+<span class="thumbnailmsg">
+[<a href="javascript:expand_video('<var $num>','<var expand_image_filename($image)>',<var $width>,<var $height>,false)">Play once</a>]
+[<a href="javascript:expand_video('<var $num>','<var expand_image_filename($image)>',<var $width>,<var $height>,true)">Loop</a>]
+</span><br />
+<img id="thumb<var $num>" src="<var expand_filename($thumbnail)>" width="<var $tn_width>" height="<var $tn_height>" alt="<var $size>" class="thumb" style="cursor:pointer" onclick="expand_video('<var $num>','<var expand_image_filename($image)>',<var $width>,<var $height>,false)" />
 </if>
 <if $image!~/\.(webm|mp4)$/i>
 <a target="_blank" href="<var expand_image_filename($image)>">
