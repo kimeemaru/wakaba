@@ -151,9 +151,12 @@ function do_ban(el)
 function expand_video(num,vsrc,vwidth,vheight,loop)
 {
     var thumb=document.getElementById('thumb'+num);
-    if(!thumb) { return; } // already expanded
+    if(!thumb || thumb.tagName.toLowerCase()!='img') { return; } // already expanded, ignore re-clicks
 
-    var tsrc=thumb.src, twidth=thumb.width, theight=thumb.height, talt=thumb.alt;
+    var tsrc=thumb.getAttribute('src'), twidth=thumb.getAttribute('width'), theight=thumb.getAttribute('height'), talt=thumb.getAttribute('alt');
+
+    var links=document.getElementById('vidlinks'+num);
+    if(links) { links.style.display='none'; }
 
     var wrapper=document.createElement('span');
     wrapper.id='thumb'+num;
@@ -176,6 +179,7 @@ function expand_video(num,vsrc,vwidth,vheight,loop)
         img.style.cursor='pointer';
         img.onclick=function() { expand_video(num,vsrc,vwidth,vheight,loop); };
         wrapper.parentNode.replaceChild(img,wrapper);
+        if(links) { links.style.display=''; }
     };
 
     var video=document.createElement('video');

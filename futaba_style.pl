@@ -131,7 +131,7 @@ use constant PAGE_TEMPLATE => compile_template(NORMAL_HEAD_INCLUDE.q{
 
 <if $thumbnail>
 <if $image=~/\.(webm|mp4)$/i>
-<span class="thumbnailmsg">
+<span id="vidlinks<var $num>" class="thumbnailmsg">
 [<a href="javascript:expand_video('<var $num>','<var expand_image_filename($image)>',<var $width>,<var $height>,false)">Play once</a>]
 [<a href="javascript:expand_video('<var $num>','<var expand_image_filename($image)>',<var $width>,<var $height>,true)">Loop</a>]
 </span><br />
@@ -200,7 +200,7 @@ use constant PAGE_TEMPLATE => compile_template(NORMAL_HEAD_INCLUDE.q{
 
 <if $thumbnail>
 <if $image=~/\.(webm|mp4)$/i>
-<span class="thumbnailmsg">
+<span id="vidlinks<var $num>" class="thumbnailmsg">
 [<a href="javascript:expand_video('<var $num>','<var expand_image_filename($image)>',<var $width>,<var $height>,false)">Play once</a>]
 [<a href="javascript:expand_video('<var $num>','<var expand_image_filename($image)>',<var $width>,<var $height>,true)">Loop</a>]
 </span><br />
