@@ -129,10 +129,17 @@ use constant PAGE_TEMPLATE => compile_template(NORMAL_HEAD_INCLUDE.q{
 				-(<em><var $size> B, <var $width>x<var $height></em>)</span>
 				<span class="thumbnailmsg"><const S_THUMB></span><br />
 
-				<if $thumbnail>
-					<a target="_blank" href="<var expand_image_filename($image)>">
-					<img src="<var expand_filename($thumbnail)>" width="<var $tn_width>" height="<var $tn_height>" alt="<var $size>" class="thumb" /></a>
-				</if>
+<if $thumbnail>
+<if $image=~/\.(webm|mp4)$/i>
+<video class="thumb" controls preload="metadata" poster="<var expand_filename($thumbnail)>" width="<var $tn_width>" height="<var $tn_height>">
+<source src="<var expand_image_filename($image)>" />
+</video>
+</if>
+<if $image!~/\.(webm|mp4)$/i>
+<a target="_blank" href="<var expand_image_filename($image)>">
+<img src="<var expand_filename($thumbnail)>" width="<var $tn_width>" height="<var $tn_height>" alt="<var $size>" class="thumb" /></a>
+</if>
+</if>
 				<if !$thumbnail>
 					<if DELETED_THUMBNAIL>
 						<a target="_blank" href="<var expand_image_filename(DELETED_IMAGE)>">
@@ -189,10 +196,17 @@ use constant PAGE_TEMPLATE => compile_template(NORMAL_HEAD_INCLUDE.q{
 				-(<em><var $size> B, <var $width>x<var $height></em>)</span>
 				<span class="thumbnailmsg"><const S_THUMB></span><br />
 
-				<if $thumbnail>
-					<a target="_blank" href="<var expand_image_filename($image)>">
-					<img src="<var expand_filename($thumbnail)>" width="<var $tn_width>" height="<var $tn_height>" alt="<var $size>" class="thumb" /></a>
-				</if>
+<if $thumbnail>
+<if $image=~/\.(webm|mp4)$/i>
+<video class="thumb" controls preload="metadata" poster="<var expand_filename($thumbnail)>" width="<var $tn_width>" height="<var $tn_height>">
+<source src="<var expand_image_filename($image)>" />
+</video>
+</if>
+<if $image!~/\.(webm|mp4)$/i>
+<a target="_blank" href="<var expand_image_filename($image)>">
+<img src="<var expand_filename($thumbnail)>" width="<var $tn_width>" height="<var $tn_height>" alt="<var $size>" class="thumb" /></a>
+</if>
+</if>
 				<if !$thumbnail>
 					<if DELETED_THUMBNAIL>
 						<a target="_blank" href="<var expand_image_filename(DELETED_IMAGE)>">

@@ -551,7 +551,7 @@ sub post_stuff($$$$$$$$$$$$$$)
 	$date.=' ID:'.make_id_code($ip,$time,$email) if(DISPLAY_ID);
 
 	# copy file, do checksums, make thumbnail, etc
-	my ($filename,$md5,$width,$height,$thumbnail,$tn_width,$tn_height)=process_file($file,$uploadname,$time) if($file);
+	my ($filename,$md5,$width,$height,$thumbnail,$tn_width,$tn_height)=process_file_with_video($file,$uploadname,$time) if($file);
 
 	# finally, write to the database
 	my $sth=$dbh->prepare("INSERT INTO ".SQL_TABLE." VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);") or make_error(S_SQLFAIL);
@@ -1871,4 +1871,64 @@ sub get_decoded_arrayref($)
 	}
 
 	return $row;
+}
+
+sub process_file_with_video($$$)
+{
+    my ($file,$uploadname,$time)=@_;
+
+    # peek at the header to see if this is a video, then rewind
+    my $header;
+    read($file,$header,12);
+    seek($file,0,0);
+
+    my $ext;
+    if($header=~/^\x1A\x45\xDF\xA3/) { $ext='webm'; }             # Matroska/WebM
+    elsif(substr($header,4,4) eq 'ftyp') { $ext='mp4'; }           # ISO base media (mp4/m4v)
+
+    return process_file($file,$uploadname,$time) unless($ext);    # not video -> original path
+
+    make_error(S_BADFORMAT) if(grep { $_ eq $ext } FORBIDDEN_EXTENSIONS);
+
+    binmode $file;
+
+    my $filebase=$time.sprintf("%03d",int(rand(1000)));
+    my $filename=IMG_DIR.$filebase.'.'.$ext;
+    my $thumbnail=THUMB_DIR.$filebase."s.jpg";
+
+    my ($md5,$md5ctx,$buffer);
+    eval 'use Digest::MD5 qw(md5_hex)';
+    $md5ctx=Digest::MD5->new unless($@);
+
+    open(OUTFILE,">>$filename") or make_error(S_NOTWRITE);
+    binmode OUTFILE;
+    while(read($file,$buffer,1024))
+    {
+        print OUTFILE $buffer;
+        $md5ctx->add($buffer) if($md5ctx);
+    }
+    close $file;
+    close OUTFILE;
+    $md5=$md5ctx->hexdigest() if($md5ctx);
+
+    my ($width,$height)=(0,0);
+    my $probe=`ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 "$filename" 2>/dev/null`;
+    ($width,$height)=($1,$2) if($probe=~/^(\d+),(\d+)/);
+
+    make_error(S_TOOBIG) if(MAX_IMAGE_WIDTH and $width>MAX_IMAGE_WIDTH);
+    make_error(S_TOOBIG) if(MAX_IMAGE_HEIGHT and $height>MAX_IMAGE_HEIGHT);
+
+    my $tn_max=200; # thumbnail max dimension - raise if you want bigger thumbs
+    system('ffmpeg','-y','-ss','1','-i',$filename,'-vframes','1',
+           '-vf',"scale='min($tn_max,iw)':-1",$thumbnail);
+
+    my ($tn_width,$tn_height)=(0,0);
+    if(-e $thumbnail)
+    {
+        my $dims=`ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 "$thumbnail" 2>/dev/null`;
+        ($tn_width,$tn_height)=($1,$2) if($dims=~/^(\d+),(\d+)/);
+    }
+    else { $thumbnail=''; }
+
+    return ($filename,$md5,$width,$height,$thumbnail,$tn_width,$tn_height);
 }
