@@ -162,6 +162,25 @@ table td {
 .spoiler:hover { color: white !important; }
 img { border: 0; }
 
+.catalogheader {
+	background:#DDDDDD;
+	text-align:center;
+	padding:2px;
+	color:#CC3333;
+	width:100%;
+	font-size:1.5em;
+	border:solid 1px #CCCCCC;
+	-moz-border-radius:5px;
+}
+.catalogwrap { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; padding:16px; }
+.catalogcell { display:block; width:180px; background:#CACACA; border:solid 2px #CCCCCC; -moz-border-radius:16px; color:#222222; padding:6px; text-decoration:none; }
+.catalogcell:hover { background:#BBBBBB; }
+.catalogthumbwrap { position:relative; text-align:center; margin-bottom:6px; min-height:60px; }
+.catalogthumbwrap img { max-width:150px; max-height:150px; border:0; }
+.catalogcount { position:absolute; bottom:2px; right:2px; background:rgba(255,255,255,0.85); color:#666666; font-size:11px; padding:1px 3px; }
+.catalogtext { font-size:12px; word-wrap:break-word; color:#222222; }
+.catalogtext b { color:#AA2222; }
+
 pre {
     white-space: pre-wrap;       /* Since CSS 2.1 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */

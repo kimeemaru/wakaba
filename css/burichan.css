@@ -173,6 +173,22 @@ a:hover {
 .spoiler:hover { color: white !important; }
 img { border: 0; }
 
+.catalogheader {
+	background:#0010E0;
+	color:#FFFFFF;
+	width:100%;
+	text-align:center;
+	font-size:1.5em;
+}
+.catalogwrap { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; padding:16px; }
+.catalogcell { display:block; width:180px; background:#D6DAF0; color:#000000; font-family:serif; padding:6px; text-decoration:none; }
+.catalogcell:hover { background:#9AD2F6; }
+.catalogthumbwrap { position:relative; text-align:center; margin-bottom:6px; min-height:60px; }
+.catalogthumbwrap img { max-width:150px; max-height:150px; border:0; }
+.catalogcount { position:absolute; bottom:2px; right:2px; background:rgba(255,255,255,0.85); color:#000000; font-size:11px; padding:1px 3px; }
+.catalogtext { font-size:12px; word-wrap:break-word; color:#000000; }
+.catalogtext b { color:#0F0C5D; }
+
 pre {
     white-space: pre-wrap;       /* Since CSS 2.1 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */

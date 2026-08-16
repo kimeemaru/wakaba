@@ -229,10 +229,11 @@ sub build_cache()
 
 	$row=get_decoded_hashref($sth);
 
-	if(!$row) # no posts on the board!
-	{
-		build_cache_page(0,1); # make an empty page 0
-	}
+if(!$row) # no posts on the board!
+{
+    build_cache_page(0,1); # make an empty page 0
+    build_catalog();
+}
 	else
 	{
 		my @threads;
@@ -251,6 +252,7 @@ sub build_cache()
 			}
 		}
 		push @threads,{posts=>[@thread]};
+        build_catalog(@threads);
 
 		my $total=get_page_count(scalar @threads);
 		my @pagethreads;
@@ -336,6 +338,73 @@ sub build_cache_page($$@)
 		pages=>\@pages,
 		threads=>\@threads
 	));
+}
+
+sub build_catalog(@)
+{
+    my (@threads)=@_;
+
+    my $cells='';
+
+    foreach my $thread (@threads)
+    {
+        my ($op,@replies)=@{$$thread{posts}};
+        my $replycount=@replies;
+        my $imagecount=grep { $$_{image} } @{$$thread{posts}};
+
+        my $thumb='';
+        if($$op{thumbnail})
+        {
+            $thumb='<img src="'.expand_filename($$op{thumbnail}).'" width="'.$$op{tn_width}.'" height="'.$$op{tn_height}.'" alt="" class="catalogthumb" />';
+        }
+
+        my $text=$$op{comment};
+        $text=~s/<[^>]+>/ /g;      # strip HTML tags left by format_comment - plain snippet only
+        $text=~s/\s+/ /g;
+        $text=~s/^\s+|\s+$//g;
+        if(length($text)>200) { $text=substr($text,0,200).'...'; }
+
+        my $subject=$$op{subject};
+
+        $cells.='<a class="catalogcell" href="'.get_reply_link($$op{num},0).'">'.
+                 '<div class="catalogthumbwrap">'.$thumb.
+                 '<span class="catalogcount">'.$replycount.' replies / '.$imagecount.' images</span>'.
+                 '</div>'.
+                 '<div class="catalogtext"><b>'.$subject.'</b><br />'.$text.'</div>'.
+                 '</a>'."\n";
+    }
+
+    my $page=<<"CATALOGPAGE";
+<!DOCTYPE html>
+<html>
+<head>
+<title>Catalog</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link rel="shortcut icon" href="/wakaba/wakaba.ico">
+<link rel="alternate stylesheet" type="text/css" href="/wakaba/css/aya.css" title="Aya" disabled>
+<link rel="alternate stylesheet" type="text/css" href="/wakaba/css/burichan.css" title="Burichan">
+<link rel="alternate stylesheet" type="text/css" href="/wakaba/css/cirno blue.css" title="Cirno Blue" disabled>
+<link rel="alternate stylesheet" type="text/css" href="/wakaba/css/futaba.css" title="Futaba" disabled>
+<link rel="alternate stylesheet" type="text/css" href="/wakaba/css/gurochan.css" title="Gurochan" disabled>
+<link rel="alternate stylesheet" type="text/css" href="/wakaba/css/marisa black.css" title="Marisa Black" disabled>
+<link rel="alternate stylesheet" type="text/css" href="/wakaba/css/murderer white.css" title="Murderer White" disabled>
+<link rel="alternate stylesheet" type="text/css" href="/wakaba/css/nazrin grey.css" title="Nazrin Grey" disabled>
+<link rel="alternate stylesheet" type="text/css" href="/wakaba/css/photon.css" title="Photon" disabled>
+<link rel="stylesheet" type="text/css" href="/wakaba/css/reimu red.css" title="Reimu Red" disabled>
+<link rel="alternate stylesheet" type="text/css" href="/wakaba/css/spooky suwako.css" title="Spooky Suwako" disabled>
+<script type="text/javascript">var style_cookie="wakabastyle";</script>
+<script type="text/javascript" src="/wakaba/wakaba3.js"></script>
+</head>
+<body>
+<div class="catalogheader">Catalog</div>
+<div class="catalogwrap">
+$cells
+</div>
+</body>
+</html>
+CATALOGPAGE
+
+    print_page('catalog.html',$page);
 }
 
 sub build_thread_cache($)

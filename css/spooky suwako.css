@@ -191,6 +191,31 @@ input[type="submit"], button
 .spoiler:hover { color: white !important; }
 img { border: 0; }
 
+.catalogheader {
+	text-align:center;
+	padding:2px;
+	color:#FF7200;
+	font-weight:bold;
+	text-shadow:#9F2900 1px 1px 0;
+	font-family:Cambria,Georgia,"Times New Roman",serif;
+	width:100%;
+	font-size:1.5em;
+}
+.catalogwrap { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; padding:16px; }
+.catalogcell {
+	display:block; width:180px;
+	background-color:#9F2900;
+	background-image:-moz-linear-gradient(-135deg,#9F2900,#FF7200);
+	background-image:-webkit-gradient(linear,right top,left bottom,from(#9F2900),to(#FF7200));
+	color:#FFFFFF; padding:6px; text-decoration:none;
+}
+.catalogcell:hover { background-color:#FF7200; }
+.catalogthumbwrap { position:relative; text-align:center; margin-bottom:6px; min-height:60px; }
+.catalogthumbwrap img { max-width:150px; max-height:150px; border:0; }
+.catalogcount { position:absolute; bottom:2px; right:2px; background:rgba(0,0,0,0.7); color:#FF7200; font-size:11px; padding:1px 3px; }
+.catalogtext { font-size:12px; word-wrap:break-word; color:#FFFFFF; }
+.catalogtext b { color:#000000; }
+
 pre {
     white-space: pre-wrap;       /* Since CSS 2.1 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
