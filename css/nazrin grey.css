@@ -175,9 +175,14 @@ img { border: 0; }
 .catalogwrap { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; padding:16px; }
 .catalogcell { display:block; width:180px; background:#CACACA; border:solid 2px #CCCCCC; -moz-border-radius:16px; color:#222222; padding:6px; text-decoration:none; }
 .catalogcell:hover { background:#BBBBBB; }
-.catalogthumbwrap { position:relative; text-align:center; margin-bottom:6px; min-height:60px; }
+.catalogthumbwrap {  text-align:center; margin-bottom:6px; min-height:60px; }
 .catalogthumbwrap img { max-width:150px; max-height:150px; border:0; }
-.catalogcount { position:absolute; bottom:2px; right:2px; background:rgba(255,255,255,0.85); color:#666666; font-size:11px; padding:1px 3px; }
+.catalogcount {
+	text-align:center;
+	color:#666666;   /* keep this file's existing color value */
+	font-size:11px;
+	margin-bottom:4px;
+}
 .catalogtext { font-size:12px; word-wrap:break-word; color:#222222; }
 .catalogtext b { color:#AA2222; }
 

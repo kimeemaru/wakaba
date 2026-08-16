@@ -172,7 +172,7 @@ img { border: 0; }
 	background:#FF9999;
 }
 .catalogthumbwrap {
-	position:relative;
+
 	text-align:center;
 	margin-bottom:6px;
 	min-height:60px;
@@ -183,13 +183,10 @@ img { border: 0; }
 	border:0;
 }
 .catalogcount {
-	position:absolute;
-	bottom:2px;
-	right:2px;
-	background:rgba(255,255,255,0.85);
+	text-align:center;
 	color:#800000;
 	font-size:11px;
-	padding:1px 3px;
+	margin-bottom:4px;
 }
 .catalogtext {
 	font-size:12px;

@@ -154,9 +154,14 @@ img { border: 0; }
 .catalogwrap { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; padding:16px; }
 .catalogcell { display:block; width:180px; background:#F0E0D6; color:#800000; padding:6px; text-decoration:none; }
 .catalogcell:hover { background:#EEAA88; }
-.catalogthumbwrap { position:relative; text-align:center; margin-bottom:6px; min-height:60px; }
+.catalogthumbwrap {  text-align:center; margin-bottom:6px; min-height:60px; }
 .catalogthumbwrap img { max-width:150px; max-height:150px; border:0; }
-.catalogcount { position:absolute; bottom:2px; right:2px; background:rgba(255,255,255,0.85); color:#800000; font-size:11px; padding:1px 3px; }
+.catalogcount {
+	text-align:center;
+	color:#800000;   /* keep this file's existing color value */
+	font-size:11px;
+	margin-bottom:4px;
+}
 .catalogtext { font-size:12px; word-wrap:break-word; color:#800000; }
 .catalogtext b { color:#CC1105; }
 

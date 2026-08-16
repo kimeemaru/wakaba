@@ -135,9 +135,14 @@ a.quotejs:hover {
 .catalogwrap { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; padding:16px; }
 .catalogcell { display:block; width:180px; background:#330033; border:1px solid #552255; color:#FFFFFF; padding:6px; text-decoration:none; }
 .catalogcell:hover { background:#442244; }
-.catalogthumbwrap { position:relative; text-align:center; margin-bottom:6px; min-height:60px; }
+.catalogthumbwrap {  text-align:center; margin-bottom:6px; min-height:60px; }
 .catalogthumbwrap img { max-width:150px; max-height:150px; border:0; }
-.catalogcount { position:absolute; bottom:2px; right:2px; background:rgba(0,0,0,0.7); color:#CCCC33; font-size:11px; padding:1px 3px; }
+.catalogcount {
+	text-align:center;
+	color:#CCCC33;   /* keep this file's existing color value */
+	font-size:11px;
+	margin-bottom:4px;
+}
 .catalogtext { font-size:12px; word-wrap:break-word; color:#FFFFFF; }
 .catalogtext b { color:#CCCC33; }
 

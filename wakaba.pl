@@ -412,10 +412,11 @@ sub build_catalog(@)
 [<a href=\\faq.html <button>FAQ</button></a>]
 [<a href="https://bunbunmaru.ca/wakaba/wakaba.pl?task=admin">Manage</a>]
 </div>
+<br>
 <hr />
-<div class="catalogheader">Catalog ("
+<div class="catalogheader">Catalog (
 <a href="/wakaba/">/wakaba/</a>
-")</div>
+)</div>
 <div class="catalogwrap">
 $cells
 </div>

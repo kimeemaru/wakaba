@@ -235,9 +235,14 @@ img { border: 0; }
 	color:#FFFF00; padding:6px; text-decoration:none;
 }
 .catalogcell:hover { background-color:#220000; }
-.catalogthumbwrap { position:relative; text-align:center; margin-bottom:6px; min-height:60px; }
+.catalogthumbwrap {  text-align:center; margin-bottom:6px; min-height:60px; }
 .catalogthumbwrap img { max-width:150px; max-height:150px; border:0; }
-.catalogcount { position:absolute; bottom:2px; right:2px; background:rgba(0,0,0,0.7); color:#FFDD00; font-size:11px; padding:1px 3px; }
+.catalogcount {
+	text-align:center;
+	color:#FF0000;   /* keep this file's existing color value */
+	font-size:11px;
+	margin-bottom:4px;
+}
 .catalogtext { font-size:12px; word-wrap:break-word; color:#FF0000; }
 .catalogtext b { color:#DD0000; }
 
