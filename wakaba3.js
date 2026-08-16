@@ -157,7 +157,6 @@ function set_video_mode(num,vsrc,vwidth,vheight,loop)
 
     if(el.tagName.toLowerCase()=='img')
     {
-        // first expansion - build the wrapper, remember the original thumbnail for collapsing back
         wrapper=document.createElement('span');
         wrapper.id='thumb'+num;
         wrapper.className='thumbwrap';
@@ -179,29 +178,46 @@ function set_video_mode(num,vsrc,vwidth,vheight,loop)
         wrapper.appendChild(document.createElement('br'));
 
         el.parentNode.replaceChild(wrapper,el);
+
+        var video=document.createElement('video');
+        video.src=vsrc;
+        video.width=vwidth;
+        video.height=vheight;
+        video.controls=true;
+        video.autoplay=true;
+        video.loop=loop;
+        video.className='thumb';
+        video.style.maxWidth='100%';
+        video.style.height='auto';
+        video.style.display='block';
+
+        var savedvol=localStorage.getItem('wakabaVideoVolume');
+        var savedmuted=localStorage.getItem('wakabaVideoMuted');
+        video.volume=(savedvol!==null)?parseFloat(savedvol):1;
+        video.muted=(savedmuted==='true');
+
+        video.addEventListener('volumechange',function()
+        {
+            localStorage.setItem('wakabaVideoVolume',video.volume);
+            localStorage.setItem('wakabaVideoMuted',video.muted);
+        });
+
+        video.addEventListener('click',function(e)
+        {
+            var rect=video.getBoundingClientRect();
+            if(e.clientY > rect.bottom-40) { return; } // let native controls handle their own clicks
+            if(video.paused) { video.play(); } else { video.pause(); }
+        });
+
+        wrapper.appendChild(video);
     }
     else if(el.className=='thumbwrap')
     {
-        // already expanded - just swap the loop mode, don't rebuild the whole wrapper
-        wrapper=el;
-        var oldvideo=wrapper.querySelector('video');
-        if(oldvideo) { wrapper.removeChild(oldvideo); }
+        // already expanded - just flip the loop setting on the existing video, no reload
+        var existing=el.querySelector('video');
+        if(existing) { existing.loop=loop; }
     }
     else { return; }
-
-    var video=document.createElement('video');
-    video.src=vsrc;
-    video.width=vwidth;
-    video.height=vheight;
-    video.controls=true;
-    video.autoplay=true;
-    video.loop=loop;
-    video.className='thumb';
-    video.style.maxWidth='100%';
-    video.style.height='auto';
-    video.style.display='block';
-
-    wrapper.appendChild(video);
 
     highlight_video_link(num,loop);
 }
@@ -214,6 +230,9 @@ function collapse_video(num)
     var vsrc=wrapper.getAttribute('data-vsrc');
     var vwidth=wrapper.getAttribute('data-vwidth');
     var vheight=wrapper.getAttribute('data-vheight');
+
+    var oldvideo=wrapper.querySelector('video');
+    if(oldvideo) { oldvideo.pause(); }
 
     var img=document.createElement('img');
     img.id='thumb'+num;
