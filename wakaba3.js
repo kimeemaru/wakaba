@@ -148,39 +148,46 @@ function do_ban(el)
 	return false;
 }
 
-function expand_video(num,vsrc,vwidth,vheight,loop)
+function set_video_mode(num,vsrc,vwidth,vheight,loop)
 {
-    var thumb=document.getElementById('thumb'+num);
-    if(!thumb || thumb.tagName.toLowerCase()!='img') { return; } // already expanded, ignore re-clicks
+    var el=document.getElementById('thumb'+num);
+    if(!el) { return; }
 
-    var tsrc=thumb.getAttribute('src'), twidth=thumb.getAttribute('width'), theight=thumb.getAttribute('height'), talt=thumb.getAttribute('alt');
+    var wrapper;
 
-    var links=document.getElementById('vidlinks'+num);
-    if(links) { links.style.display='none'; }
-
-    var wrapper=document.createElement('span');
-    wrapper.id='thumb'+num;
-    wrapper.className='thumbwrap';
-
-    var collapse=document.createElement('a');
-    collapse.href='javascript:void(0)';
-    collapse.className='collapsevideo';
-    collapse.appendChild(document.createTextNode('[-]'));
-    collapse.style.display='block';
-    collapse.onclick=function()
+    if(el.tagName.toLowerCase()=='img')
     {
-        var img=document.createElement('img');
-        img.id='thumb'+num;
-        img.src=tsrc;
-        img.width=twidth;
-        img.height=theight;
-        img.alt=talt;
-        img.className='thumb';
-        img.style.cursor='pointer';
-        img.onclick=function() { expand_video(num,vsrc,vwidth,vheight,loop); };
-        wrapper.parentNode.replaceChild(img,wrapper);
-        if(links) { links.style.display=''; }
-    };
+        // first expansion - build the wrapper, remember the original thumbnail for collapsing back
+        wrapper=document.createElement('span');
+        wrapper.id='thumb'+num;
+        wrapper.className='thumbwrap';
+        wrapper.setAttribute('data-tsrc',el.getAttribute('src'));
+        wrapper.setAttribute('data-twidth',el.getAttribute('width'));
+        wrapper.setAttribute('data-theight',el.getAttribute('height'));
+        wrapper.setAttribute('data-talt',el.getAttribute('alt'));
+        wrapper.setAttribute('data-vsrc',vsrc);
+        wrapper.setAttribute('data-vwidth',vwidth);
+        wrapper.setAttribute('data-vheight',vheight);
+
+        var collapse=document.createElement('a');
+        collapse.href='javascript:void(0)';
+        collapse.className='collapsevideo';
+        collapse.appendChild(document.createTextNode('[-]'));
+        collapse.onclick=function() { collapse_video(num); };
+
+        wrapper.appendChild(collapse);
+        wrapper.appendChild(document.createElement('br'));
+
+        el.parentNode.replaceChild(wrapper,el);
+    }
+    else if(el.className=='thumbwrap')
+    {
+        // already expanded - just swap the loop mode, don't rebuild the whole wrapper
+        wrapper=el;
+        var oldvideo=wrapper.querySelector('video');
+        if(oldvideo) { wrapper.removeChild(oldvideo); }
+    }
+    else { return; }
 
     var video=document.createElement('video');
     video.src=vsrc;
@@ -194,10 +201,41 @@ function expand_video(num,vsrc,vwidth,vheight,loop)
     video.style.height='auto';
     video.style.display='block';
 
-    wrapper.appendChild(collapse);
     wrapper.appendChild(video);
 
-    thumb.parentNode.replaceChild(wrapper,thumb);
+    highlight_video_link(num,loop);
+}
+
+function collapse_video(num)
+{
+    var wrapper=document.getElementById('thumb'+num);
+    if(!wrapper || wrapper.className!='thumbwrap') { return; }
+
+    var vsrc=wrapper.getAttribute('data-vsrc');
+    var vwidth=wrapper.getAttribute('data-vwidth');
+    var vheight=wrapper.getAttribute('data-vheight');
+
+    var img=document.createElement('img');
+    img.id='thumb'+num;
+    img.src=wrapper.getAttribute('data-tsrc');
+    img.width=wrapper.getAttribute('data-twidth');
+    img.height=wrapper.getAttribute('data-theight');
+    img.alt=wrapper.getAttribute('data-talt');
+    img.className='thumb';
+    img.style.cursor='pointer';
+    img.onclick=function() { set_video_mode(num,vsrc,vwidth,vheight,false); };
+
+    wrapper.parentNode.replaceChild(img,wrapper);
+
+    highlight_video_link(num,null);
+}
+
+function highlight_video_link(num,activeloop)
+{
+    var once=document.getElementById('playonce'+num);
+    var loop=document.getElementById('loop'+num);
+    if(once) { once.style.fontWeight=(activeloop===false)?'bold':'normal'; }
+    if(loop) { loop.style.fontWeight=(activeloop===true)?'bold':'normal'; }
 }
 
 window.onunload=function(e)
