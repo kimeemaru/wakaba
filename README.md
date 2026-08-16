@@ -11,3 +11,5 @@ https://wakaba.c3.cx/docs/docs.html
 5. noko in the email field returns you to the thread you were posting in
 6. partially broken thread list! (threadlist.php)
 7. spoiler thumbnails (credits: anonymous)
+8. webm/mp4 support (thanks claude)
+9. catalog (more claude)
