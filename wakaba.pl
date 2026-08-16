@@ -355,11 +355,11 @@ sub build_catalog(@)
         my $thumb='';
         if($$op{thumbnail})
         {
-            $thumb='<img src="'.expand_filename($$op{thumbnail}).'" width="'.$$op{tn_width}.'" height="'.$$op{tn_height}.'" alt="" class="catalogthumb" />';
+            $thumb='<img src="'.expand_filename($$op{thumbnail}).'" alt="" class="catalogthumb" />';
         }
 
         my $text=$$op{comment};
-        $text=~s/<[^>]+>/ /g;      # strip HTML tags left by format_comment - plain snippet only
+        $text=~s/<[^>]+>/ /g;
         $text=~s/\s+/ /g;
         $text=~s/^\s+|\s+$//g;
         if(length($text)>200) { $text=substr($text,0,200).'...'; }
@@ -367,9 +367,8 @@ sub build_catalog(@)
         my $subject=$$op{subject};
 
         $cells.='<a class="catalogcell" href="'.get_reply_link($$op{num},0).'">'.
-                 '<div class="catalogthumbwrap">'.$thumb.
-                 '<span class="catalogcount">'.$replycount.' replies / '.$imagecount.' images</span>'.
-                 '</div>'.
+                 '<div class="catalogthumbwrap">'.$thumb.'</div>'.
+                 '<div class="catalogcount">'.$replycount.' replies / '.$imagecount.' images</div>'.
                  '<div class="catalogtext"><b>'.$subject.'</b><br />'.$text.'</div>'.
                  '</a>'."\n";
     }
@@ -396,12 +395,35 @@ sub build_catalog(@)
 <script type="text/javascript" src="/wakaba/wakaba3.js"></script>
 </head>
 <body>
-<div class="catalogheader">Catalog</div>
+<div class="adminbar">
+[<a href="javascript:set_stylesheet('Aya')">Aya</a>]
+[<a href="javascript:set_stylesheet('Burichan')">Burichan</a>]
+[<a href="javascript:set_stylesheet('Cirno Blue')">Cirno Blue</a>]
+[<a href="javascript:set_stylesheet('Futaba')">Futaba</a>]
+[<a href="javascript:set_stylesheet('Gurochan')">Gurochan</a>]
+[<a href="javascript:set_stylesheet('Marisa Black')">Marisa Black</a>]
+[<a href="javascript:set_stylesheet('Murderer White')">Murderer White</a>]
+[<a href="javascript:set_stylesheet('Nazrin Grey')">Nazrin Grey</a>]
+[<a href="javascript:set_stylesheet('Photon')">Photon</a>]
+[<a href="javascript:set_stylesheet('Reimu Red')">Reimu Red</a>]
+[<a href="javascript:set_stylesheet('Spooky Suwako')">Spooky Suwako</a>]
+-
+[<a href="/wakaba/../" target="_top">Home</a>]
+[<a href=\\faq.html <button>FAQ</button></a>]
+[<a href="https://bunbunmaru.ca/wakaba/wakaba.pl?task=admin">Manage</a>]
+</div>
+<hr />
+<div class="catalogheader">Catalog ("
+<a href="/wakaba/">/wakaba/</a>
+")</div>
 <div class="catalogwrap">
 $cells
 </div>
-</body>
-</html>
+<br clear="all" />
+<p class="footer">
+- <a href="https://wakaba.c3.cx/">wakaba 3.0.9</a> + <a href="https://github.com/kimeemaru/wakaba/">teen spirit</a> + <a href="https://ota-ch.com/jp/">all my friends</a> -
+</p>
+</body></html>
 CATALOGPAGE
 
     print_page('catalog.html',$page);
