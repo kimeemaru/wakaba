@@ -396,21 +396,24 @@ sub build_catalog(@)
 </head>
 <body>
 <div class="adminbar">
-[<a href="javascript:set_stylesheet('Aya')">Aya</a>]
-[<a href="javascript:set_stylesheet('Burichan')">Burichan</a>]
-[<a href="javascript:set_stylesheet('Cirno Blue')">Cirno Blue</a>]
-[<a href="javascript:set_stylesheet('Futaba')">Futaba</a>]
-[<a href="javascript:set_stylesheet('Gurochan')">Gurochan</a>]
-[<a href="javascript:set_stylesheet('Marisa Black')">Marisa Black</a>]
-[<a href="javascript:set_stylesheet('Murderer White')">Murderer White</a>]
-[<a href="javascript:set_stylesheet('Nazrin Grey')">Nazrin Grey</a>]
-[<a href="javascript:set_stylesheet('Photon')">Photon</a>]
-[<a href="javascript:set_stylesheet('Reimu Red')">Reimu Red</a>]
-[<a href="javascript:set_stylesheet('Spooky Suwako')">Spooky Suwako</a>]
 -
 [<a href="/wakaba/../" target="_top">Home</a>]
 [<a href=\\faq.html <button>FAQ</button></a>]
 [<a href="https://bunbunmaru.ca/wakaba/wakaba.pl?task=admin">Manage</a>]
+<span style="white-space:nowrap; margin-left:0.5em;">Style:
+<select id="stylesheet-select" onchange="set_stylesheet(this.value)">
+<option value="Aya">Aya</option>
+<option value="Burichan">Burichan</option>
+<option value="Cirno Blue">Cirno Blue</option>
+<option value="Futaba">Futaba</option>
+<option value="Gurochan">Gurochan</option>
+<option value="Marisa Black">Marisa Black</option>
+<option value="Murderer White">Murderer White</option>
+<option value="Nazrin Grey">Nazrin Grey</option>
+<option value="Photon">Photon</option>
+<option value="Reimu Red">Reimu Red</option>
+<option value="Spooky Suwako">Spooky Suwako</option>
+</select></span>
 </div>
 <br>
 <hr />
