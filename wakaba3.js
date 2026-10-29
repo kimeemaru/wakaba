@@ -284,3 +284,23 @@ if(style_cookie)
 	var title=cookie?cookie:get_preferred_stylesheet();
 	set_stylesheet(title);
 }
+
+window.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("a[target='_blank'] > img.thumb")
+        .forEach(function (img) {
+            var link = img.parentElement;
+            if (!link || !link.href) return;
+
+            var path;
+            try {
+                path = new URL(link.href, document.baseURI).pathname;
+            } catch (e) {
+                return;
+            }
+
+            if (/\.gif$/i.test(path)) {
+                img.loading = "lazy";
+                img.src = link.href;
+            }
+        });
+});

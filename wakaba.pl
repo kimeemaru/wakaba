@@ -1171,7 +1171,7 @@ sub process_file($$$)
         $tn_height=100;
         $thumbnail='spoiler/spoiler.jpg';
     }
-	if($filetypes{$ext}) # externally defined filetype - restore the name
+	if($filetypes{$ext} && $filetypes{$ext} ne '1') # externally defined filetype - restore the name
 	{
 		my $newfilename=$uploadname;
 		$newfilename=~s!^.*[\\/]!!; # cut off any directory in filename
