@@ -48,14 +48,17 @@ form .trap { display:none }
 }.include("include/header.html").q{
 
 <div class="adminbar">
-<loop $stylesheets>
-	[<a href="javascript:set_stylesheet('<var $title>')"><var $title></a>]
-</loop>
 -
 [<a href="<var expand_filename(HOME)>" target="_top"><const S_HOME></a>]
 [<a href=\faq.html <button>FAQ</button></a>]
 [<a href=\wakaba\catalog.html <button>Catalog</button></a>]
 [<a href="<var get_secure_script_name()>?task=admin"><const S_ADMIN></a>]
+<span style="white-space:nowrap; margin-left:0.5em;">Style:
+<select id="stylesheet-select" onchange="set_stylesheet(this.value)">
+<loop $stylesheets>
+<option value="<var $title>"><var $title></option>
+</loop>
+</select></span>
 </div>
 
 <div class="logo">
