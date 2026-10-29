@@ -276,6 +276,14 @@ window.onload=function(e)
 
 	if(match=/#([0-9]+)/.exec(document.location.toString()))
 	highlight(match[1]);
+
+	// Keep the dropdown in sync with the stylesheet restored from the cookie.
+	var stylepicker=document.getElementById("stylesheet-select");
+	if(stylepicker)
+	{
+		var active_style=get_active_stylesheet();
+		if(active_style) stylepicker.value=active_style;
+	}
 }
 
 if(style_cookie)
