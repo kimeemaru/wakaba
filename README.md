@@ -12,3 +12,4 @@ https://wakaba.c3.cx/docs/docs.html
 6. spoiler thumbnails (credits: anonymous)
 7. webm/mp4 support (thanks claude)
 8. catalog (more claude)
+9. autoplaying gifs
